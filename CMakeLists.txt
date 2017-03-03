@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(power_control)
+project(encoder_driver)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
@@ -17,9 +17,9 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(power_control src/power_control.cpp)
+add_executable(encoder_driver src/encoder_driver.cpp)
 
-target_link_libraries(power_control
+target_link_libraries(encoder_driver
   ${catkin_LIBRARIES}
 )
 
