@@ -19,11 +19,13 @@ main (int argc, char *argv[])
     ros::NodeHandle nh;
     ros::Publisher encoder_pub = nh.advertise<encoder_driver::encoder>("encoder_count", 10);
 
-    char ttydev[] = "/dev/ttyUSB-encoder";
+    std::string ttydev;
     int brate = 115200;
-    char channel[] = "encoder_counter";
+    ros::param::param<std::string>("~device", ttydev, "/dev/ttyUSB-encoder");
+    ros::param::param<int>("~baudrate", brate, 115200);
+    int fd = serial_open (ttydev.c_str(), brate, 0);
 
-    int fd = serial_open (ttydev, brate, 0);
+    char channel[] = "encoder_counter";
 
     serial_set_canonical (fd);
 
